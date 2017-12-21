@@ -177,7 +177,6 @@ if __name__ == "__main__":
         else:
             y_test_temp = np.argmax(y_test,axis=1)
             score.append(accuracy_score(y_test_temp, y_pr))
-        i +=1
 
         del model_tmp
         del model_CNN
@@ -197,7 +196,7 @@ if __name__ == "__main__":
                          epochs=n_epochs,
                          batch_size=batch_size,
                          callbacks=callbacks_list,
-                         verbose=1)
+                         verbose=2)
         History.append(h)
         if sparse_categorical == 0:
             model_tmp.load_weights(filepath)
@@ -217,9 +216,8 @@ if __name__ == "__main__":
             y_proba.append(np.array(y_pr))
             y_test_temp = np.argmax(y_test,axis=1)
             score.append(accuracy_score(y_test_temp, y_pr))
-        i+=1
         del model_tmp
         gc.collect()
 
-
+    print(score)
 
