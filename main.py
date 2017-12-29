@@ -89,7 +89,7 @@ if __name__ == "__main__":
     MAX_NB_WORDS = 75000
     EMBEDDING_DIM = 100
     batch_size = 128
-    n_epochs = 100
+    n_epochs = 10
     sparse_categorical=0
     text=1
     np.set_printoptions(threshold=np.inf)
@@ -138,85 +138,6 @@ if __name__ == "__main__":
             score.append(accuracy_score(y_test_temp, y_pr))
         del model_tmp
         del model_DNN
-        gc.collect()
-
-        print("CNN")
-
-
-        model_CNN, model_tmp = BuildModel.buildModel_CNN(word_index, embeddings_index, number_of_classes,
-                                                 MAX_SEQUENCE_LENGTH, EMBEDDING_DIM,sparse_categorical)
-
-        filepath = "weights_CNN.hdf5"
-        checkpoint = ModelCheckpoint(filepath, monitor='val_acc', verbose=1, save_best_only=True,
-                                     mode='max')
-        callbacks_list = [checkpoint]
-
-
-        h =model_CNN.fit(X_train_M, y_train,
-                             validation_data=(X_test_M, y_test),
-                             epochs=n_epochs,
-                             batch_size=batch_size,
-                             callbacks=callbacks_list,
-                             verbose=2)
-        History.append(h)
-        model_tmp.load_weights("weights_CNN.hdf5")
-        if sparse_categorical == 0:
-            model_tmp.compile(loss='sparse_categorical_crossentropy',
-                          optimizer='rmsprop',
-                          metrics=['accuracy'])
-        else:
-            model_tmp.compile(loss='categorical_crossentropy',
-                          optimizer='rmsprop',
-                          metrics=['accuracy'])
-        y_pr = model_tmp.predict(X_test_M, batch_size=batch_size)
-        y_pr = np.argmax(y_pr, axis=1)
-        y_proba.append(np.array(y_pr))
-
-        if sparse_categorical == 0:
-            score.append(accuracy_score(y_test, y_pr))
-        else:
-            y_test_temp = np.argmax(y_test,axis=1)
-            score.append(accuracy_score(y_test_temp, y_pr))
-
-        del model_tmp
-        del model_CNN
-        gc.collect()
-
-        print("RNN ")
-        filepath = "weights_RNN.hdf5"
-        checkpoint = ModelCheckpoint(filepath, monitor='val_acc', verbose=1, save_best_only=True,
-                                     mode='max')
-        callbacks_list = [checkpoint]
-
-        model_RNN, model_tmp = BuildModel.buildModel_RNN(word_index, embeddings_index, number_of_classes,
-                                                 MAX_SEQUENCE_LENGTH, EMBEDDING_DIM,sparse_categorical)
-
-        h = model_RNN.fit(X_train_M, y_train,
-                         validation_data=(X_test_M, y_test),
-                         epochs=n_epochs,
-                         batch_size=batch_size,
-                         callbacks=callbacks_list,
-                         verbose=2)
-        History.append(h)
-        if sparse_categorical == 0:
-            model_tmp.load_weights(filepath)
-            model_tmp.compile(loss='sparse_categorical_crossentropy',
-                          optimizer='rmsprop',
-                          metrics=['accuracy'])
-            y_pr = model_tmp.predict_classes(X_test_M, batch_size=batch_size)
-            y_proba.append(np.array(y_pr))
-            score.append(accuracy_score(y_test, y_pr))
-        else:
-            model_tmp.load_weights(filepath)
-            model_tmp.compile(loss='categorical_crossentropy',
-                          optimizer='rmsprop',
-                          metrics=['accuracy'])
-            y_pr = model_tmp.predict(X_test_M, batch_size=batch_size)
-            y_pr = np.argmax(y_pr,axis=1)
-            y_proba.append(np.array(y_pr))
-            y_test_temp = np.argmax(y_test,axis=1)
-            score.append(accuracy_score(y_test_temp, y_pr))
-        del model_tmp
         gc.collect()
 
     print(score)
