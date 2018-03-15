@@ -1,7 +1,7 @@
 # Identification of Imminent Suicide Risk Among Young Adults using Text Messages
 
 <p align="center">
-<img src="http://kowsari.net/onewebmedia/ACMCHI.pdf" width="55%"></img> 
+<img src="http://kowsari.net/onewebmedia/ACMCHI.jpg" width="55%"></img> 
 </p>
 
 ## Documentation
