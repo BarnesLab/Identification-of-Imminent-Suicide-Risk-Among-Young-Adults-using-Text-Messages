@@ -65,3 +65,20 @@ General:
 $ sudo apt-get install libcupti-dev
 ```
 
+## Error and Comments: ##
+
+Send an email to [kk7nc@virginia.edu](mailto:kk7nc@virginia.edu)
+
+
+## Citations ##
+
+    @inproceedings{nobles2018identification,
+      title={Identification of Imminent Suicide Risk Among Young Adults using Text Messages},
+      author={Nobles, Alicia L. and Glenn, Jeffrey J. and Kowsari, Kamran and Teachman, Bethany A. and Barnes, Laura E.},
+      booktitle={Proceedings of the 2018 CHI Conference on Human Factors in Computing Systems},
+      year={2018},
+      organization={ACM},
+      doi={10.1145/3173574.3173987}
+    }
+
+
