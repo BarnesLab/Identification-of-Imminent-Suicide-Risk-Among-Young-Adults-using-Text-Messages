@@ -67,7 +67,7 @@ If the above command does not work, use the following:
 Send an email to [kk7nc@virginia.edu](mailto:kk7nc@virginia.edu)
 
 
-## Citations ##
+## Citation: ##
 
     @inproceedings{nobles2018identification,
       title={Identification of Imminent Suicide Risk Among Young Adults using Text Messages},
