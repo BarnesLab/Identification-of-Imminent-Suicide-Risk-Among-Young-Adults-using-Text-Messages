@@ -1,3 +1,8 @@
+
+[![GitHub license](https://img.shields.io/badge/licence-GPL-blue.svg)](./LICENSE)
+
+
+
 # Identification of Imminent Suicide Risk Among Young Adults using Text Messages
 
 <p align="center">
