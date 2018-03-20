@@ -36,11 +36,8 @@ If the above command does not work, use the following:
 
     sudo -H pip  install -r requirements.txt
     
-    
-    ## Requirment for RMDL : ##
 
-
-General:
+## General: ##
 
 - Python 3.5 or later see [Instruction Documents](https://www.python.org/)
 
@@ -64,11 +61,6 @@ General:
 
   * The libcupti-dev library,
 
-  * To install this library, issue the following command:
-
-```
-$ sudo apt-get install libcupti-dev
-```
 
 ## Error and Comments: ##
 
