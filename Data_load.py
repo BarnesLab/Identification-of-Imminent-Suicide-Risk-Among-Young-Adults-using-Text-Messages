@@ -21,20 +21,6 @@ import re
 
 cachedStopWords = stopwords.words("english")
 
-GLOVE_DIR = "D:/glove/"
-def tokenize(text):
-  min_length = 3
-  words = map(lambda word: word.lower(), word_tokenize(text))
-  words = [word for word in words if word not in cachedStopWords]
-  tokens = (list(map(lambda token: PorterStemmer().stem(token),
-                                   words)))
-  p = re.compile('[a-zA-Z]+');
-  filtered_tokens = list(filter (lambda token: p.match(token) and
-                               len(token) >= min_length,
-                               tokens))
-  return filtered_tokens
-
-
 def clean_str(string):
     """
     Tokenization/string cleaning for dataset
@@ -95,39 +81,8 @@ def text_cleaner(text):
     return text.lower()
 
 
-def loadData_Tokenizer(X_train, X_test,MAX_NB_WORDS,MAX_SEQUENCE_LENGTH):
-    np.random.seed(7)
-    text = np.concatenate((X_train, X_test),axis=0)
-    text = np.array(text)
-    tokenizer = Tokenizer(num_words=MAX_NB_WORDS)
-    tokenizer.fit_on_texts(text)
-    sequences = tokenizer.texts_to_sequences(text)
-    word_index = tokenizer.word_index
-    text = pad_sequences(sequences, maxlen=MAX_SEQUENCE_LENGTH)
-    print('Found %s unique tokens.' % len(word_index))
-    indices = np.arange(text.shape[0])
-    #np.random.shuffle(indices)
-    text = text[indices]
-    print(text.shape)
-    X_train = text[0:len(X_train),]
-    X_test = text[len(X_train):,]
-    GLOVE_DIR = "D:/glove/"
-    embeddings_index = {}
-    f = open(os.path.join(GLOVE_DIR, 'glove.6B.100d.txt'), encoding="utf8")
-    for line in f:
-        values = line.split()
-        word = values[0]
-        try:
-            coefs = np.asarray(values[1:], dtype='float32')
-        except:
-            print("Warnning"+str(values)+" in" + str(line))
-        embeddings_index[word] = coefs
-    f.close()
-    print('Total %s word vectors.' % len(embeddings_index))
-    return (X_train, X_test, word_index,embeddings_index)
 
-
-def Load_data(MAX_NB_WORDS,MAX_SEQUENCE_LENGTH):
+def Load_data():
 
     import pandas as pd
     content = pd.read_csv("D:\CHI\X_new.csv", encoding="utf-8")
@@ -140,10 +95,9 @@ def Load_data(MAX_NB_WORDS,MAX_SEQUENCE_LENGTH):
     # print(Label)
     X, X_t, y_train, y_test = train_test_split(content, Label, test_size=0.3, random_state=1)
     X_train, X_test = loadData(X, X_t)
-    X_train_M, X_test_M, word_index, embeddings_index = loadData_Tokenizer(X, X_t, MAX_NB_WORDS,
-                                                                           MAX_SEQUENCE_LENGTH)
+
     number_of_classes = np.max(y_train)+1
-    return (X_train,X_train_M, y_train,X_test, X_test_M, y_test, word_index, embeddings_index, number_of_classes)
+    return (X_train, y_train,X_test, y_test, number_of_classes)
 
 
 def loadData(X_train, X_test):

@@ -49,34 +49,6 @@ def plot_confusion_matrix(cm, classes,
 
 
 
-def getUniqueWords(allWords) :
-    uniqueWords = []
-    for i in allWords:
-        if not i in uniqueWords:
-            uniqueWords.append(i)
-    return uniqueWords
-def column(matrix,i):
-    f = itemgetter(i)
-    return map(f,matrix)
-
-
-def rgb2gray(rgb):
-    return np.dot(rgb[..., :3], [0.299, 0.587, 0.114])
-
-
-
-
-def FilterByCluster(input_x,input_y,target):
-    out = [row for row in input_x if target in input_y[row]]
-    return (out)
-
-def keyword_indexing(contentKey):
-    vocabulary = list(map(lambda x: x.split(';'), contentKey))
-    vocabulary = list(np.unique(list(chain(*vocabulary))))
-
-    vec = CountVectorizer(vocabulary=vocabulary, tokenizer=lambda x: x.split(';'))
-    out = np.array(vec.fit_transform(contentKey).toarray())
-    print(out.shape)
 
 
 
@@ -84,10 +56,6 @@ def keyword_indexing(contentKey):
 
 if __name__ == "__main__":
 
-    MEMORY_MB_MAX = 1600000
-    MAX_SEQUENCE_LENGTH = 750
-    MAX_NB_WORDS = 75000
-    EMBEDDING_DIM = 100
     batch_size = 128
     n_epochs = 10
     sparse_categorical=0
@@ -101,7 +69,7 @@ if __name__ == "__main__":
         model_CNN = []
         History = []
         score = []
-        X_train,X_train_M, y_train,X_test, X_test_M, y_test, word_index, embeddings_index, number_of_classes = Data_load.Load_data(MAX_NB_WORDS,MAX_SEQUENCE_LENGTH)
+        X_train, y_train,X_test, y_test, number_of_classes = Data_load.Load_data()
 
         print("DNN ")
         filepath = "weights_DNN.hdf5"
