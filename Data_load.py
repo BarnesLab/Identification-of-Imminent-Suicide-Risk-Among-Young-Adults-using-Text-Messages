@@ -1,11 +1,7 @@
 import re
 import os
-from keras.datasets import imdb
 import pandas
-from nltk.corpus import stopwords, reuters
-from sklearn.datasets import fetch_20newsgroups
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.preprocessing import MultiLabelBinarizer
 from sklearn.cross_validation import train_test_split, cross_val_score
 from sklearn.feature_extraction.text import CountVectorizer
 from keras.preprocessing.text import Tokenizer
@@ -14,12 +10,8 @@ from keras.utils.np_utils import to_categorical
 import sys
 import numpy as np
 import os
-from nltk import word_tokenize
-from nltk.stem.porter import PorterStemmer
-from nltk.corpus import stopwords
 import re
 
-cachedStopWords = stopwords.words("english")
 
 def clean_str(string):
     """
@@ -92,7 +84,6 @@ def Load_data():
     Label = Label.as_matrix()
     Label = np.matrix(Label)
     np.random.seed(7)
-    # print(Label)
     X, X_t, y_train, y_test = train_test_split(content, Label, test_size=0.3, random_state=1)
     X_train, X_test = loadData(X, X_t)
 
@@ -101,9 +92,7 @@ def Load_data():
 
 
 def loadData(X_train, X_test):
-    stop_words = stopwords.words("english")
     vectorizer_x = TfidfVectorizer()
-    #vectorizer_x = CountVectorizer()
     X_train = vectorizer_x.fit_transform(X_train).toarray()
     X_test = vectorizer_x.transform(X_test).toarray()
     print(np.array(X_train).shape)

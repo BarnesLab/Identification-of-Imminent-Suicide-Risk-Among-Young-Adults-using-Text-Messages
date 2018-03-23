@@ -1,23 +1,10 @@
 import random
-from keras.optimizers import SGD
-from keras.layers import Dropout
 from keras.utils.training_utils import multi_gpu_model
 from keras.models import Sequential
 import keras
-from keras.layers.normalization import BatchNormalization
-from keras.models import Model
 import numpy as np
 from keras.constraints import maxnorm
-from keras.layers import Dense, Input, Flatten
-from keras.layers import Conv1D,Conv2D,MaxPooling2D, MaxPooling1D, Embedding, Merge, Dropout, LSTM, GRU, Bidirectional,TimeDistributed,Convolution2D,Activation,GlobalAveragePooling2D,Convolution3D,GlobalAveragePooling3D
-np.random.seed(7)
-from keras import backend as K
-from keras.models import Model
-from keras.layers import Input
-from keras.layers.core import Lambda
-from keras.layers.merge import Concatenate
-import tensorflow as tf
-
+from keras.layers import Dense, Input, Flatten,Dropout
 
 def slice_batch(x, n_gpus, part):
     """

@@ -3,23 +3,12 @@ os.environ["THEANO_FLAGS"] = "mode=FAST_RUN,device=gpu,floatX=float32"
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 os.environ["CUDA_VISIBLE_DEVICES"]="2,1,0"
 from sklearn.metrics import accuracy_score
-from keras.datasets import cifar,mnist,imdb
 import numpy as np
 import itertools
-import scipy.io as sio
 import matplotlib.pyplot as plt
 import gc
-from operator import itemgetter
-from keras.datasets import cifar10,cifar100
-from sklearn.metrics import confusion_matrix
-import random
-import collections
-from keras.models import Sequential
 import Data_load
-from sklearn.metrics import f1_score,precision_recall_fscore_support
 import BuildModel
-from sklearn.feature_extraction.text import CountVectorizer
-from itertools import chain
 from keras.callbacks import ModelCheckpoint
 np.random.seed(7)
 
