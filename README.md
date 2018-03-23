@@ -1,4 +1,5 @@
 [![license](http://kowsari.net/ACMCHI_DOI.svg?maxAge=2592000)](https://doi.org/10.1145/3173574.3173987)
+[![wercker status](https://app.wercker.com/status/22364f11710cef35e52247dad75a08ac/s/master "wercker status")](https://app.wercker.com/project/byKey/22364f11710cef35e52247dad75a08ac)
 [![GitHub license](https://img.shields.io/badge/licence-GPL-red.svg)](./LICENSE)
 
 
