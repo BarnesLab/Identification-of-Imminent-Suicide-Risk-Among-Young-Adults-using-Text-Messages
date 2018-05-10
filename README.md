@@ -1,6 +1,8 @@
 [![license](https://img.shields.io/badge/DOI-10.1145%2F3173574.3173987-blue.svg)](https://doi.org/10.1145/3173574.3173987)
 [![wercker status](https://app.wercker.com/status/22364f11710cef35e52247dad75a08ac/s/master "wercker status")](https://app.wercker.com/project/byKey/22364f11710cef35e52247dad75a08ac)
 [![GitHub license](https://img.shields.io/badge/licence-GPL-red.svg)](./LICENSE)
+[![twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Identification%20of%20Imminent%20Suicide%20Risk%20Among%20Young%20Adults%20using%20Text%20Messages&url=https://www.researchgate.net/publication/322835990_Identification_of_Imminent_Suicide_Risk_Among_Young_Adults_using_Text_Messages&hashtags=suicide,mental_health,social_media,deep_neural_networks,depression,Text_Classification,text_messages)
+
 
 
 
